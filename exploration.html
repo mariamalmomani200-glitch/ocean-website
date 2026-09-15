@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استكشافات المحيط</title>
+    <link rel="stylesheet" href="sea.css">
+</head>
+
+<body>
+
+    <svg style="position:absolute;width:0;height:0" aria-hidden="true">
+            <filter id="caustics" x="-20%" y="-20%" width="140%" height="140%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.014 0.032" numOctaves="2" seed="7" result="noise"/>
+                <feColorMatrix in="noise" type="matrix"
+                    values="0 0 0 0 0.29
+                            0 0 0 0 0.79
+                            0 0 0 0 0.94
+                            0 0 0 1 0" result="tinted"/>
+                <feComponentTransfer in="tinted">
+                <feFuncA type="gamma" amplitude="1.4" exponent="4" offset="0"/>
+                </feComponentTransfer>
+                <feGaussianBlur stdDeviation="1"/>
+            </filter>
+            </svg>
+            <div class="caustics-bg"></div>
+        
+
+
+    <!-- شريط التنقل -->
+    
+         <nav>
+            <div class="logo">
+                <img src="شعب مرجانيه.WEBP" alt="شعب مرجانيه">
+                <span>المحيط</span>
+            </div>
+
+    <!-- زر القائمة للموبايل -->
+            <button class="menu-toggle" id="menu-toggle">☰</button>
+
+            <div class="nav-menu" dir="rtl">
+                <ul>
+                    <li><a href="index.html" id="home">الرئيسية</a></li>
+                    <li><a href="theiat.html" id="oceans">المحيطات</a></li>
+                    <li><a href="layers.html" id="layers">طبقات</a></li>
+                    <li><a href="secrets.html" id="secrets">الأسرار</a></li>
+                    <li><a href="exploration.html" id="exploration">الاستكشافات</a></li>
+                </ul>
+            </div>
+        </nav>
+
+
+    <!-- مقدمة الصفحة -->
+    <header class="exploration-hero">
+
+        <div class="hero-content">
+
+            <h1>استكشافات المحيط</h1>
+
+            <p>
+                رحلة إلى أعماق المحيط لاكتشاف الأماكن والكائنات
+                والظواهر التي ما زالت تثير فضول العلماء
+            </p>
+
+            <a href="#explorations" class="hero-button">
+                ابدأ الاستكشاف
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- الاستكشافات -->
+    <main id="explorations">
+
+    <br>
+
+
+        <div class="explorations-container" dir="rtl">
+
+
+            <!-- الاستكشاف الأول -->
+            <article class="exploration-card">
+
+                <img
+                    src="خندق ماريانا.jpg"
+                    alt="خندق ماريانا">
+
+                <div class="exploration-content">
+
+                    <span class="exploration-number">01</span>
+
+                    <h3>خندق ماريانا</h3>
+
+                    <p>
+                        رحلة إلى واحدة من أعمق المناطق المعروفة
+                        في محيطات الأرض، حيث الضغط هائل والضوء
+                        شبه معدوم.
+                    </p>
+
+                    <button onclick="showExploration(this)">
+                        اكتشف الرحلة
+                    </button>
+
+                    <div class="exploration-info">
+                        يقع خندق ماريانا في غرب المحيط الهادئ،
+                        ويُعد أعمق نقطة معروفة في محيطات الأرض.
+                        يتميز بضغط هائل وظلام شديد، مما يجعل
+                        استكشافه تحديًا كبيرًا للعلماء.
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- الاستكشاف الثاني -->
+            <article class="exploration-card">
+
+                <img
+                    src="الغوص الى الاعماق.jpg"
+                    alt="غواصة في أعماق المحيط">
+
+                <div class="exploration-content">
+
+                    <span class="exploration-number">02</span>
+
+                    <h3>الغوص إلى الأعماق</h3>
+
+                    <p>
+                        باستخدام الغواصات والمركبات المتخصصة،
+                        يستطيع العلماء الوصول إلى مناطق بعيدة
+                        وعميقة من المحيط.
+                    </p>
+
+                    <button onclick="showExploration(this)">
+                        اكتشف الرحلة
+                    </button>
+
+                    <div class="exploration-info">
+                        تستخدم الغواصات والمركبات المتخصصة
+                        للوصول إلى أعماق المحيط.
+                        وتسمح هذه الرحلات للعلماء بدراسة
+                        الكائنات والبيئات التي لا يستطيع الإنسان
+                        الوصول إليها بنفسه.
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- الاستكشاف الثالث -->
+            <article class="exploration-card">
+
+                <img
+                    src=" الروبوتات البحريه.jpg"
+                    alt="روبوت يستكشف المحيط">
+
+                <div class="exploration-content">
+
+                    <span class="exploration-number">03</span>
+
+                    <h3>الروبوتات البحرية</h3>
+
+                    <p>
+                        تستخدم المركبات الآلية تحت الماء لاستكشاف
+                        الأماكن الخطرة والعميقة التي يصعب على الإنسان
+                        الوصول إليها.
+                    </p>
+
+                    <button onclick="showExploration(this)">
+                        اكتشف الرحلة
+                    </button>
+
+                    <div class="exploration-info">
+                        تستطيع الروبوتات البحرية استكشاف المناطق
+                        العميقة والخطيرة وجمع الصور والعينات والبيانات.
+                        وتساعد العلماء على دراسة المحيط دون تعريض
+                        الإنسان للخطر.
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- الاستكشاف الرابع -->
+            <article class="exploration-card">
+
+                <img
+                    src="اكتشاف كائنات جديده.jpg"
+                    alt="اكتشاف كائن بحري جديد">
+
+                <div class="exploration-content">
+
+                    <span class="exploration-number">04</span>
+
+                    <h3>اكتشاف كائنات جديدة</h3>
+
+                    <p>
+                        ما زالت البعثات العلمية تكتشف أنواعًا جديدة
+                        من الكائنات البحرية في المناطق التي لم تتم
+                        دراستها بشكل كامل.
+                    </p>
+
+                    <button onclick="showExploration(this)">
+                        اكتشف الرحلة
+                    </button>
+
+                    <div class="exploration-info">
+                        لا يزال المحيط يخفي عددًا كبيرًا من الكائنات
+                        غير المعروفة. وتساعد البعثات العلمية على
+                        اكتشاف أنواع جديدة ودراسة طرق تكيفها
+                        مع الظروف القاسية في الأعماق.
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- الاستكشاف الخامس -->
+            <article class="exploration-card">
+
+                <img
+                    src="رسم خريطة القاع.jpg"
+                    alt="رسم خرائط قاع المحيط">
+
+                <div class="exploration-content">
+
+                    <span class="exploration-number">05</span>
+
+                    <h3>رسم خريطة قاع المحيط</h3>
+
+                    <p>
+                        تساعد تقنيات السونار والمعدات الحديثة
+                        العلماء على معرفة تضاريس قاع المحيط
+                        ورسم خرائط أكثر دقة.
+                    </p>
+
+                    <button onclick="showExploration(this)">
+                        اكتشف الرحلة
+                    </button>
+
+                    <div class="exploration-info">
+                        يستخدم العلماء تقنيات السونار لرسم خرائط
+                        لقاع المحيط ومعرفة الجبال والأخاديد والبراكين
+                        الموجودة تحته، مما يساعد على فهم تضاريس
+                        المحيط بشكل أفضل.
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- الاستكشاف السادس -->
+            <article class="exploration-card">
+
+                <img
+                    src="البعثات العلمية.jpg"
+                    alt="علماء يستكشفون المحيط">
+
+                <div class="exploration-content">
+
+                    <span class="exploration-number">06</span>
+
+                    <h3>البعثات العلمية</h3>
+
+                    <p>
+                        تنطلق البعثات العلمية لدراسة المحيط
+                        والكائنات البحرية والأنظمة البيئية
+                        واكتشاف المناطق المجهولة.
+                    </p>
+
+                    <button onclick="showExploration(this)">
+                        اكتشف الرحلة
+                    </button>
+
+                    <div class="exploration-info">
+                        تنطلق البعثات العلمية لدراسة الكائنات البحرية
+                        والبيئات المحيطية وجمع العينات والبيانات.
+                        وتساهم هذه الرحلات في اكتشاف مناطق جديدة
+                        وفهم أسرار المحيط.
+                    </div>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- تذييل الصفحة -->
+    <footer>
+        &copy; عالم المحيط — Mariam 2026
+    </footer>
+
+
+    <script src="sea.js"></script>
+
+</body>
+
+</html>

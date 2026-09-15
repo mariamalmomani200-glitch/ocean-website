@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> الطبقات  </title>
+        <link rel="stylesheet" href="sea.css">
+    </head>
+    
+    
+    
+    <body>
+            <svg style="position:absolute;width:0;height:0" aria-hidden="true">
+            <filter id="caustics" x="-20%" y="-20%" width="140%" height="140%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.014 0.032" numOctaves="2" seed="7" result="noise"/>
+                <feColorMatrix in="noise" type="matrix"
+                    values="0 0 0 0 0.29
+                            0 0 0 0 0.79
+                            0 0 0 0 0.94
+                            0 0 0 1 0" result="tinted"/>
+                <feComponentTransfer in="tinted">
+                <feFuncA type="gamma" amplitude="1.4" exponent="4" offset="0"/>
+                </feComponentTransfer>
+                <feGaussianBlur stdDeviation="1"/>
+            </filter>
+            </svg>
+            <div class="caustics-bg"></div>
+         <nav>
+            <div class="logo">
+                <img src="شعب مرجانيه.WEBP" alt="شعب مرجانيه">
+                <span>المحيط</span>
+            </div>
+
+    <!-- زر القائمة للموبايل -->
+            <button class="menu-toggle" id="menu-toggle">☰</button>
+
+            <div class="nav-menu" dir="rtl">
+                <ul>
+                    <li><a href="index.html" id="home">الرئيسية</a></li>
+                    <li><a href="theiat.html" id="oceans">المحيطات</a></li>
+                    <li><a href="layers.html" id="layers">طبقات</a></li>
+                    <li><a href="secrets.html" id="secrets">الأسرار</a></li>
+                    <li><a href="exploration.html" id="exploration">الاستكشافات</a></li>
+                </ul>
+            </div>
+        </nav>
+        <section class="hero-layer" dir="rtl">
+            <h1>طبقات المحيط</h1>
+            <p>
+                    كلما ازداد العمق، تغير الضوء ودرجة الحرارة والضغط،
+                    لتبدأ رحلة نحو عالم مليء بالغموض
+            </p>
+
+        </section>
+        <section class="timeline">
+        <div class="layer-card  layer1">
+            <h2>منطقة ضوء الشمس (السطحية - Epipelagic)</h2>
+            <p>العمق: 0 - 200 متر</p>
+            <ul>
+                <li>توجد فيها كمية كبيرة من الضوء</li>
+                <li>تعيش فيها النباتات البحرية والكائنات التي تصنع غذاءها بنفسها مثل الأسماك والدلافين</li>
+            </ul>
+        </div>
+
+        <div class="layer-card  layer2">
+            <h2>منطقة الشفق (المتوسطة - Mesopelagic)</h2>              
+            <p>العمق: 200 - 1000 متر</p>
+            <ul>
+                <li>يصلها ضوء خفيف وضعيف جداً</li>               
+                <li>تعيش فيها كائنات عجيبة لها القدرة على إضاءة أجسامها بنفسها</li>                
+            </ul>
+        </div>
+
+        <div class="layer-card  layer3">
+            <h2>منطقة منتصف الليل (العميقة - Bathypelagic)</h2>              
+            <p>العمق: 1000 - 4000 متر</p>
+            <ul>
+                <li>تتميز بظلام تام وباردة جداً</li>               
+                <li>تعيش فيها كائنات غريبة تعتمد على بقايا الطعام النازلة من الأعلى</li>                
+            </ul>
+        </div>
+
+        <div class="layer-card  layer4">
+            <h2>المنطقة السحيقة (Abyssalpelagic)</h2>              
+            <p>العمق: 4000 - 6000  متر</p>
+            <ul>
+                <li>الضغط فيها قوي جداً والماء بارد للغاية</li>               
+                <li>لا يوجد أي ضوء نهائياً</li>                
+            </ul>
+        </div>
+
+
+        <div class="layer-card  layer5">
+            <h2>منطقة الخنادق (الهاوية - Hadalpelagic)</h2>              
+            <p>العمق: 6000 - 10000  متر</p>
+            <ul>
+                <li>شديدة البرودة والضغط فيها هائل.</li>               
+            </ul>
+        </div>
+        </section>
+        <footer>
+    &copy;  عالم المحيط — Mariam 2026
+</footer>
+    
+    <script src="sea.js"></script>
+
+</body>
+</html>

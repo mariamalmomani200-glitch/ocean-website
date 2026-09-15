@@ -1,0 +1,1499 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html
+{
+    scroll-behavior: smooth;
+}
+
+body
+{
+    font-family: "Cairo", sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: linear-gradient(160deg, #010810, #03192b, #063452, #021423, #010810);
+}
+
+.caustics-bg{
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    filter: url(#caustics);
+    opacity: 0.22;
+    mix-blend-mode: screen;
+    background: radial-gradient(circle at 50% 35%, rgba(255,255,255,0.9), transparent 60%);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 8, 16, 0.35);
+    z-index: 0;
+}
+ 
+body > * {
+    position: relative;
+    z-index: 1;
+}
+.background{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    object-fit:fill;
+    z-index: -1;
+}
+nav
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(6, 30, 50, 0.55);
+    backdrop-filter: blur(5px);
+    padding: 15px 20px;
+    color: white;
+    position: sticky;
+    top:0;
+    z-index:1000;
+    font-size: 25px;
+
+
+}
+
+
+.logo
+{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+}
+.logo img
+{
+    width: 25px;
+    height: 25px;
+}
+ul
+{
+    list-style: none;
+    display: flex;
+    gap: 50px;
+}
+ul li a
+{
+    text-decoration: none;
+    color: white;
+    gap: 50px;
+    font-size: 25px;
+
+
+}
+
+.hero
+{
+    text-align: right;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-top: 50px;
+    padding-right: 25px;
+}
+
+.hero h3,
+.hero h1,.hero p{
+    padding: 0px;
+    text-align: right;
+    font-size: 20px;
+    margin-bottom: 10px;
+    align-items: flex-end;
+
+}
+
+/* =========================
+   أزرار اكتشاف المحيط
+========================= */
+
+.butons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 35px;
+    direction: rtl;
+}
+
+/* شكل الزر الأساسي */
+.but {
+    display: inline-block;
+    padding: 14px 28px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 25px;
+    color: white;
+    text-decoration: none;
+    font-family: 'Cairo', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    background: rgba(0, 70, 110, 0.55);
+    backdrop-filter: blur(6px);
+    transition: 0.3s ease;
+}
+
+/* عند تمرير الماوس */
+.but:hover {
+    background: rgba(19, 61, 75, 0.75);
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 180, 220, 0.3);
+}
+
+/* زر اكتشف طبقات المحيط */
+.bu 
+{
+background: rgba(0, 35, 70, 0.7); 
+}
+
+/* تأثير مختلف عند المرور عليه */
+.bu:hover {
+    background: rgba(0, 70, 110, 0.55);
+}
+
+hr
+{
+    width:100%;    
+    border: 1px solid ;
+    height: 2px;             
+    border: none;
+    height: 1px;
+    background: rgba(125, 211, 252, 0.35);
+
+}
+.about{
+    color:wheat;
+    text-align: right;
+    font-size: 100%;
+    margin-right: 25px;
+}
+.about > div:first-child {
+    text-align: right;
+}
+.about > div:first-child pre {
+    font-size: 19px;
+}
+.info-box{
+    width:90%;
+    margin:30px auto;
+    padding:20px;
+    background-color: rgba(50, 61, 61, 0.5);;
+    border-radius: 15px;
+    text-align: right;
+    border: 1px solid #7dd3fc;
+    box-shadow: 0 0 15px rgba(125, 211, 252, 0.5);
+
+    
+}
+.informtion{
+    direction: rtl;
+    list-style:disc;
+    display: block;
+    text-align: right;
+    margin-right: 20px;
+
+}
+.relation{
+    color:white
+
+}
+ 
+footer {
+    text-align: center;
+
+    background: rgba(6, 30, 50, 0.55);
+    backdrop-filter: blur(6px);
+
+    border-top: 1px solid rgba(125, 211, 252, 0.35);
+
+    box-shadow: 0 -10px 25px rgba(76, 201, 240, 0.08);
+
+    color: white;
+    font-size: 150%;
+    padding: 20px 0;
+}
+
+.info-box {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 0.7s ease;
+}
+
+.info-box.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+/*انتهاء صفحة الرئيسية*/
+
+
+
+
+/*بداية المحيطات*/
+/* الحاوية التي تحتوي جميع الكروت */
+
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 280px);
+    justify-content: center;
+    gap: 30px;
+    padding: 50px;
+}
+
+.card:nth-child(4) {
+    grid-column: 1;
+    position: relative;
+    left: 155px;
+}
+
+.card:nth-child(5) {
+    grid-column: 2;
+    position: relative;
+    left: 155px;
+}
+.card {
+    width: 280px;
+    min-height: 400px;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    transition: 0.4s ease;
+    box-shadow: 0 0 15px rgba(125, 211, 252, 0.5);
+}
+
+
+
+ 
+/* الكرت */
+ 
+
+/* عند المرور بالماوس */
+.card:hover{
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+}
+
+/* الصورة */
+.card img{
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+/* اسم المحيط */
+.card h3{
+    margin-bottom: 15px;
+    font-size: 24px;
+    color: #9be8ff;
+}
+
+/* الوصف */
+.card p{
+    line-height: 1.8;
+    font-size: 16px;
+    color: #f1f1f1;
+}
+
+/*انتهاء صفحة  المحيطات*/
+
+/*بداية صفحة  الطبقات*/
+
+
+.hero-layer{
+
+    text-align:center;
+    padding:80px;
+    color:white;
+    font-size:25px;
+}
+
+
+
+
+.layer-card{
+    width: 40%;
+
+    background:rgba(255,255,255,0.12);
+
+    backdrop-filter:blur(10px);
+    padding: 20px;
+
+    border-radius:20px;
+    transition: 0.4s ease;
+
+    padding:25px;
+
+    margin:40px 0;
+    position: relative;
+    box-shadow: 0 0 15px rgba(125, 211, 252, 0.5);
+
+    color:white;
+}
+.layer-card ul {
+    display: block;
+    list-style: disc;
+    direction: rtl;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.layer-card li {
+    margin-bottom: 10px;
+}
+
+.timeline{
+    width: 80%;
+    margin: auto;
+    position: relative;
+    padding: 50px 0;
+}
+
+.timeline::before{
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #4cc9f0;
+    transform: translateX(-50%);
+}
+
+
+.layer-card:nth-child(odd){
+    margin-right: auto;
+}
+
+.layer-card:nth-child(even){
+    margin-left: auto;
+}
+
+
+.layer-card::before{
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: #4cc9f0;
+    border-radius: 50%;
+    top: 30px;
+}
+
+
+.layer-card:nth-child(odd)::before{
+    right: -50px;
+}
+
+.layer-card:nth-child(even)::before{
+    left: -50px;
+}
+
+.layer1{
+    background: rgba(0, 180, 255, 0.20);
+}
+
+.layer2{
+    background: rgba(0, 120, 220, 0.25);
+}
+
+.layer3{
+    background: rgba(0, 80, 170, 0.30);
+}
+
+.layer4{
+    background: rgba(0, 50, 120, 0.35);
+}
+
+.layer5{
+    background: rgba(5, 15, 50, 0.45);
+}
+
+.layers-body{
+    position: relative;
+}
+
+.layers-body::before {
+    background: linear-gradient(
+        to bottom,
+        rgba(0,180,255,0.15),
+        rgba(0,100,180,0.25),
+        rgba(0,40,100,0.45),
+        rgba(0,10,30,0.65)
+    );
+}
+.layer-card:hover{
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+}
+
+
+
+/* قسم أسرار المحيط */
+
+.ocean-secrets {
+    padding: 70px 8%;
+    background: linear-gradient(to bottom, #031b2e, #064b6b);
+    color: white;
+}
+
+
+
+
+/* البطاقات */
+
+.secrets-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+
+/* البطاقة */
+
+.secret-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+
+/* حركة البطاقة */
+
+.secret-card:hover {
+    transform: translateY(-8px);
+}
+
+
+/* الصور */
+
+.secret-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+
+/* محتوى البطاقة */
+
+.card-content {
+    padding: 22px;
+    color: #9be8ff;
+
+}
+
+.card-content h2 {
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.card-content p {
+    color: #d7edf5;
+    line-height: 1.7;
+    margin-bottom: 18px;
+}
+
+
+/* الزر */
+
+.card-content button {
+    background: #00a6c7;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.card-content button:hover {
+    background: #007d9b;
+}
+.secret-info {
+    display: none;
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(0, 20, 40, 0.5);
+    border-right: 3px solid #4cc9f0;
+    border-radius: 10px;
+    color: white;
+    line-height: 1.8;
+    text-align: right;
+}
+.secret-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.7);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1000;
+}
+
+.secret-modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: #063b5c;
+    width: 90%;
+    max-width: 600px;
+    padding: 35px;
+
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.modal-content p {
+    line-height: 2;
+    color: #d7edf5;
+    font-size: 17px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 12px;
+    left: 18px;
+
+    background: none;
+    border: none;
+
+    color: white;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: #00c8e8;}
+
+/* بداية صفحة الاكتشافات */
+
+
+.exploration-hero {
+    min-height: 75vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 80px 8%;
+
+    background:
+        linear-gradient(
+            rgba(0, 20, 35, 0.65),
+            rgba(0, 20, 35, 0.85)
+        ),
+        url("images/exploration-hero.jpg");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero-content h1 {
+    font-size: 55px;
+    margin-bottom: 25px;
+    text-align: center;
+    color: white;
+}
+
+.hero-content p {
+    font-size: 20px;
+    line-height: 1.9;
+
+    color: #d8edf5;
+
+    margin-bottom: 35px;
+}
+
+
+/* زر ابدأ الاستكشاف */
+
+.hero-button {
+    display: inline-block;
+
+    padding: 13px 30px;
+
+    background-color: #00a6c7;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 30px;
+
+    font-size: 17px;
+
+    transition: 0.3s;
+}
+
+.hero-button:hover {
+    background-color: #007d9b;
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================
+   عنوان الاستكشافات
+========================= */
+
+.page-title {
+    text-align: center;
+
+    max-width: 750px;
+
+    margin: 80px auto 50px;
+
+    padding: 0 20px;
+}
+
+.page-title h2 {
+    font-size: 40px;
+
+    margin-bottom: 15px;
+}
+
+.page-title p {
+    color: #cfe7ef;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================
+   بطاقات الاستكشاف
+========================= */
+
+.explorations-container {
+    width: 85%;
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 30px;
+
+    padding-bottom: 90px;
+}
+
+
+/* البطاقة */
+
+.exploration-card {
+    background-color: rgba(255, 255, 255, 0.08);
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    transition: 0.35s;
+
+    backdrop-filter: blur(5px);
+}
+
+
+/* حركة البطاقة */
+
+.exploration-card:hover {
+    transform: translateY(-10px);
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.45);
+}
+
+
+/* =========================
+   صور الاستكشافات
+========================= */
+
+.exploration-card img {
+    width: 100%;
+
+    height: 230px;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: 0.4s;
+}
+
+
+/* تكبير الصورة */
+
+.exploration-card:hover img {
+    transform: scale(1.06);
+}
+
+
+/* =========================
+   محتوى البطاقة
+========================= */
+
+.exploration-content {
+    padding: 25px;
+    color: #9be8ff;
+
+}
+
+.exploration-number {
+    display: block;
+
+    color: #00c8e8;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    margin-bottom: 8px;
+}
+
+.exploration-content h3 {
+    font-size: 24px;
+
+    margin-bottom: 14px;
+}
+
+.exploration-content p {
+    color: #d2e8ef;
+
+    line-height: 1.8;
+
+    font-size: 16px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   زر اكتشف الرحلة
+========================= */
+
+.exploration-content button {
+    padding: 10px 22px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    background-color: #00a6c7;
+
+    color: white;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.exploration-content button:hover {
+    background-color: #007d9b;
+
+    transform: scale(1.05);
+}
+.exploration-info {
+    display: none;
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(0, 20, 40, 0.5);
+    border-right: 3px solid #4cc9f0;
+    border-radius: 10px;
+    color: white;
+    line-height: 1.8;
+    text-align: right;
+}
+/*
+
+/* =========================
+   النافذة المنبثقة
+========================= */
+
+ 
+
+
+
+/* =========================
+   Navigation
+========================= */
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #00c8e8;
+}
+
+
+/* =========================
+   Footer
+========================= */
+
+footer {
+    text-align: center;
+    background: rgba(6, 30, 50, 0.55);
+    backdrop-filter: blur(6px);
+
+    border-top: 1px solid rgba(125, 211, 252, 0.35);
+    box-shadow: 0 -10px 25px rgba(76, 201, 240, 0.08);
+
+    color: white;
+    font-size: 150%;
+    padding: 20px 0;
+}
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   RESPONSIVE DESIGN - الشاشات الصغيرة
+   ========================================================= */
+
+/* ---------- التابلت ---------- */
+
+@media (max-width: 900px) {
+
+    /* Navigation */
+    nav {
+        padding: 12px 15px;
+        font-size: 20px;
+    }
+
+    .logo {
+        gap: 5px;
+    }
+
+    .logo img {
+        width: 23px;
+        height: 23px;
+    }
+
+    ul {
+        gap: 20px;
+    }
+
+    ul li a {
+        font-size: 19px;
+    }
+
+
+    /* ---------- كروت المحيطات ---------- */
+
+    .cards {
+        grid-template-columns: repeat(2, 280px);
+        gap: 25px;
+        padding: 40px 20px;
+    }
+
+    /* إلغاء تحريك الكرتين 4 و 5 */
+    .card:nth-child(4),
+    .card:nth-child(5) {
+        left: 0;
+    }
+
+
+    /* ---------- طبقات المحيط ---------- */
+
+    .timeline {
+        width: 90%;
+    }
+
+    .layer-card {
+        width: 44%;
+    }
+
+
+    /* ---------- أسرار المحيط ---------- */
+
+    .secrets-container {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 20px;
+    }
+
+
+    /* ---------- الاستكشافات ---------- */
+
+    .explorations-container {
+        width: 90%;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-content h1 {
+        font-size: 45px;
+    }
+}
+
+
+/* ========================================================= الموبايل
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    /* ---------- Navigation ---------- */
+
+    nav {
+        flex-direction: column;
+        gap: 15px;
+        padding: 12px 10px;
+    }
+
+    .logo {
+        justify-content: center;
+    }
+
+    .logo img {
+        width: 25px;
+        height: 25px;
+    }
+
+    nav .logo span {
+        font-size: 22px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px 15px;
+    }
+
+    ul li a {
+        font-size: 16px;
+    }
+
+
+    /* =====================================================
+ الصفحة الرئيسية
+       ===================================================== */
+
+    .hero {
+        padding: 40px 15px 20px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero h3,
+    .hero h1,
+    .hero p {
+        text-align: center;
+        font-size: 17px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero h3 {
+        font-size: 19px;
+    }
+
+    .hero p {
+        line-height: 1.8;
+    }
+
+
+    /* أزرار الرئيسية */
+
+    .butons {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+        margin-top: 25px;
+    }
+
+    .but {
+        width: 90%;
+        max-width: 300px;
+        text-align: center;
+        padding: 11px 18px;
+        font-size: 14px;
+    }
+
+
+    /* معلومات الرئيسية */
+
+    .about {
+        margin-right: 0;
+        padding: 0 15px;
+    }
+
+    .about > div:first-child h1 {
+        font-size: 24px;
+        line-height: 1.6;
+    }
+
+    .about > div:first-child pre {
+        font-family: "Cairo", sans-serif;
+        white-space: normal;
+        font-size: 15px;
+        line-height: 1.9;
+        text-align: right;
+    }
+
+    .info-box {
+        width: 95%;
+        padding: 16px;
+        margin: 20px auto;
+    }
+
+    .informtion {
+        margin-right: 18px;
+        padding-right: 0;
+    }
+
+    .informtion li {
+        font-size: 14px;
+        line-height: 1.8;
+        margin-bottom: 5px;
+    }
+
+
+    /* =====================================================
+       صفحة المحيطات
+       ===================================================== */
+
+    .cards {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 30px 15px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 340px;
+        min-height: auto;
+        margin: auto;
+        padding: 15px;
+    }
+
+    /* مهم جدًا:
+       إلغاء الإزاحة الموجودة للكرت 4 و5 */
+    .card:nth-child(4),
+    .card:nth-child(5) {
+        grid-column: auto;
+        left: 0;
+    }
+
+    .card img {
+        height: 190px;
+    }
+
+    .card h3 {
+        font-size: 21px;
+    }
+
+    .card p {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+
+    /* =====================================================
+       صفحة طبقات المحيط
+       ===================================================== */
+
+    .hero-layer {
+        padding: 50px 20px;
+        font-size: 18px;
+    }
+
+    .hero-layer h1 {
+        font-size: 32px;
+        margin-bottom: 15px;
+    }
+
+    .hero-layer p {
+        font-size: 16px;
+        line-height: 1.9;
+    }
+
+
+    /* تحويل الـ Timeline إلى شكل عمودي */
+
+    .timeline {
+        width: 92%;
+        padding: 20px 0 30px;
+    }
+
+    .timeline::before {
+        left: 10px;
+        transform: none;
+        width: 3px;
+    }
+
+    .layer-card {
+        width: calc(100% - 30px);
+        margin: 25px 0 25px 30px !important;
+        padding: 18px;
+    }
+
+    .layer-card:nth-child(odd),
+    .layer-card:nth-child(even) {
+        margin-left: 30px !important;
+        margin-right: 0 !important;
+    }
+
+    .layer-card::before,
+    .layer-card:nth-child(odd)::before,
+    .layer-card:nth-child(even)::before {
+        width: 14px;
+        height: 14px;
+        left: -27px;
+        right: auto;
+        top: 25px;
+    }
+
+    .layer-card h2 {
+        font-size: 19px;
+        line-height: 1.6;
+    }
+
+    .layer-card p,
+    .layer-card li {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .layer-card ul {
+        padding-right: 18px;
+    }
+
+
+    /* =====================================================
+       صفحة أسرار المحيط
+       ===================================================== */
+
+    .secrets-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 15px;
+    }
+
+    .secret-card {
+        width: 100%;
+    }
+
+    .secret-card img {
+        height: 200px;
+    }
+
+    .card-content {
+        padding: 18px;
+    }
+
+    .card-content h2 {
+        font-size: 20px;
+        line-height: 1.6;
+    }
+
+    .card-content p {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .card-content button {
+        font-size: 14px;
+        padding: 9px 18px;
+    }
+
+    .secret-info {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+
+    /* =====================================================
+       صفحة الاستكشافات
+       ===================================================== */
+
+    .exploration-hero {
+        min-height: 65vh;
+        padding: 50px 20px;
+    }
+
+    .hero-content {
+        width: 100%;
+    }
+
+    .hero-content h1 {
+        font-size: 34px;
+        line-height: 1.5;
+        margin-bottom: 18px;
+    }
+
+    .hero-content p {
+        font-size: 15px;
+        line-height: 1.9;
+        margin-bottom: 25px;
+    }
+
+    .hero-button {
+        padding: 11px 22px;
+        font-size: 15px;
+    }
+
+
+    /* عنوان الاستكشافات */
+
+    .page-title {
+        margin: 50px auto 30px;
+        padding: 0 15px;
+    }
+
+    .page-title h2 {
+        font-size: 28px;
+        line-height: 1.6;
+    }
+
+    .page-title p {
+        font-size: 15px;
+        line-height: 1.9;
+    }
+
+
+    /* كروت الاستكشافات */
+
+    .explorations-container {
+        width: 92%;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding-bottom: 50px;
+    }
+
+    .exploration-card img {
+        height: 200px;
+    }
+
+    .exploration-content {
+        padding: 18px;
+    }
+
+    .exploration-content h3 {
+        font-size: 21px;
+        line-height: 1.6;
+    }
+
+    .exploration-content p {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .exploration-content button {
+        font-size: 14px;
+        padding: 9px 18px;
+    }
+
+    .exploration-info {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+
+    /* =====================================================
+       Footer
+       ===================================================== */
+
+    footer {
+        font-size: 14px;
+        padding: 15px 10px;
+    }
+}
+
+
+/* =========================================================
+   شاشات الموبايل الصغيرة جدًا
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    nav ul {
+        gap: 6px 10px;
+    }
+
+    ul li a {
+        font-size: 14px;
+    }
+
+    nav .logo span {
+        font-size: 20px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero h3 {
+        font-size: 17px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .card {
+        max-width: 310px;
+    }
+
+    .card img {
+        height: 170px;
+    }
+
+    .hero-layer h1 {
+        font-size: 28px;
+    }
+
+    .layer-card h2 {
+        font-size: 17px;
+    }
+
+    .hero-content h1 {
+        font-size: 29px;
+    }
+
+    .page-title h2 {
+        font-size: 25px;
+    }
+}
+
+
+
+
+/* =====================================================
+   MOBILE MENU
+   ===================================================== */
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+
+/* ---------- الموبايل ---------- */
+
+@media (max-width: 600px) {
+
+    nav {
+        position: sticky;
+        top: 0;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 15px;
+    }
+
+    .menu-toggle {
+        display: block;
+        order: 2;
+    }
+
+    .logo {
+        order: 1;
+    }
+
+    .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 10px;
+    width: 210px;
+    background: rgba(6, 30, 50, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 12px;
+    border: 1px solid rgba(125, 211, 252, 0.35);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+    .nav-menu.show {
+        display: block;
+    }
+
+    .nav-menu ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        width: 100%;
+    }
+
+    .nav-menu ul li {
+    width: 100%;
+    text-align: center;
+}
+    .nav-menu ul li a {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        font-size: 17px;
+    }
+
+}
+
+
