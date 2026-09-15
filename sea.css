@@ -1564,7 +1564,7 @@ footer {
 
 @media (min-width: 601px) and (max-width: 900px) {
 
-    .about > div:first-child pre {
+    .about > div:first-child p {
         white-space: normal;
         overflow-wrap: break-word;
         font-size: 17px;
