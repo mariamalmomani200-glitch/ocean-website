@@ -9,13 +9,14 @@ html
     scroll-behavior: smooth;
 }
 
-body
-{
+body {
     font-family: "Cairo", sans-serif;
     line-height: 1.6;
     min-height: 100vh;
     overflow-x: hidden;
-    background: linear-gradient(160deg, #010810, #03192b, #063452, #021423, #010810);
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(160deg,#010810,#03192b,#063452,#021423,#010810);
 }
 
 .caustics-bg{
@@ -1574,4 +1575,6 @@ footer {
 }
 
 
- 
+ footer {
+    margin-top: auto;
+}
