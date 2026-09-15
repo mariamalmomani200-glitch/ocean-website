@@ -199,13 +199,13 @@ hr
     text-align: right;
     border: 1px solid #7dd3fc;
     box-shadow: 0 0 15px rgba(125, 211, 252, 0.5);
-    color:white
+    color:white;
 
 
     
 }
 .informtion{
-    color:white
+    color:white;
 
     direction: rtl;
     list-style:disc;
