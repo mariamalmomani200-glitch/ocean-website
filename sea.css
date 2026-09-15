@@ -173,6 +173,8 @@ hr
     border: none;
     height: 1px;
     background: rgba(125, 211, 252, 0.35);
+    margin: 20px 0;
+
 
 }
 .about{
@@ -1558,6 +1560,18 @@ footer {
     }
 }
 
+
+
+@media (min-width: 601px) and (max-width: 900px) {
+
+    .about > div:first-child pre {
+        white-space: normal;
+        overflow-wrap: break-word;
+        font-size: 17px;
+        line-height: 1.9;
+    }
+
+}
 
 
  
