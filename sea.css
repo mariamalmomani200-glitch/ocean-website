@@ -206,7 +206,6 @@ hr
 }
 .informtion{
     color:white;
-
     direction: rtl;
     list-style:disc;
     display: block;
@@ -215,7 +214,7 @@ hr
 
 }
 .relation{
-    color:white
+    color:white;
 
 }
  
