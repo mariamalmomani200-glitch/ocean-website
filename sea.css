@@ -138,7 +138,7 @@ ul li a
     border-radius: 25px;
     color: white;
     text-decoration: none;
-    font-family: 'Cairo', sans-serif;
+    font-family: 'Tajawal', sans-serif;
     font-size: 16px;
     font-weight: 700;
     background: rgba(0, 70, 110, 0.55);
@@ -1090,7 +1090,7 @@ footer {
     }
 
     .about > div:first-child pre {
-        font-family: "Cairo", sans-serif;
+        font-family: "Tajawal", sans-serif;
         white-space: normal;
         font-size: 15px;
         line-height: 1.9;
